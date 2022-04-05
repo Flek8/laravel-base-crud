@@ -20,7 +20,7 @@ class CreateComicsTable extends Migration
             $comic->string('url', 255);
             $comic->decimal('price', 4, 2);
             $comic->string('series', 50);
-            $comic->text('description');
+            $comic->text('description')->nullable();
             $comic->string('type', 50);
 
             $comic->timestamps();

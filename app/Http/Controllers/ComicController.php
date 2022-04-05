@@ -37,7 +37,27 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+                $request->validate(
+            [
+                'url' => 'required',
+                'title' => 'required|min:5',
+                'type' => 'required',
+                'series' => 'required|min:0',
+                'price' => 'required|numeric|min:0',
+            ]
+        );
+
+        $data = $request->all();
+
+        $comic = new Comic;
+
+        $comic->fill($data);
+
+        $comic->save();
+
+        return redirect()->route('comics.index')->with('status', 'Comic created succesfully!!');
+            
     }
 
     /**
@@ -82,6 +102,6 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }
